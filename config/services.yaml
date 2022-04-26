@@ -51,3 +51,11 @@ services:
 
     App\Assigner\ShipmentCodeAssigner: 
         public: true
+
+    App\Attribute\IconAttributeType:
+        tags:
+         -
+            name: sylius.attribute.type
+            label: Icon
+            attribute_type: !php/const App\Attribute\IconAttributeType::TYPE_ICON
+            form_type: App\Form\Type\AttributeTypeType

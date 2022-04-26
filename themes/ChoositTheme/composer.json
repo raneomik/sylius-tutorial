@@ -1,0 +1,13 @@
+{
+    "name": "choosit/sylius-theme",
+    "authors": [
+        {
+            "name": "Choosit Team"
+        }
+    ],
+    "extra": {
+        "sylius-theme": {
+            "title" : "Sylius theme by Choosit"
+        }
+    }
+}
