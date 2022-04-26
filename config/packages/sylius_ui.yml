@@ -1,0 +1,7 @@
+sylius_ui:
+    events:
+        sylius.shop.homepage:
+            blocks:
+                after_latest_products:
+                    template: 'homepage/_latest_products_after.html.twig'
+                    priority: 45

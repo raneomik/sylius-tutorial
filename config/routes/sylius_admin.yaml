@@ -1,0 +1,48 @@
+sylius_admin:
+    resource: "@SyliusAdminBundle/Resources/config/routing.yml"
+    prefix: '/%sylius_admin.path_name%'
+
+sylius_paypal_admin:
+    resource: "@SyliusPayPalPlugin/Resources/config/admin_routing.yml"
+    prefix: '/%sylius_admin.path_name%'
+
+app_admin_newsletter_index:
+    path: '/%sylius_admin.path_name%/newsletter'
+    defaults:
+        _controller: app.controller.newsletter::indexAction
+        _sylius: 
+            section: admin
+            grid: app_admin_newsletter
+            template: '@SyliusAdmin/Crud/index.html.twig'
+
+app_admin_newsletter_create:
+    path: '/%sylius_admin.path_name%/newsletter/create'
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: app.controller.newsletter::createAction
+        _sylius: 
+            section: admin
+            grid: app_admin_newsletter
+            template: '@SyliusAdmin/Crud/create.html.twig'
+
+app_admin_newsletter_update:
+    path: '/%sylius_admin.path_name%/newsletter/{id}/update'
+    methods: ['GET', 'PUT']
+    requirements:
+        id: \d+
+    defaults:
+        _controller: app.controller.newsletter::updateAction
+        _sylius: 
+            section: admin
+            grid: app_admin_newsletter
+            template: '@SyliusAdmin/Crud/update.html.twig'
+
+app_admin_newsletter_delete:
+    path: '/%sylius_admin.path_name%/newsletter/{id}/delete'
+    methods: ['DELETE']
+    requirements:
+        id: \d+
+    defaults:
+        _controller: app.controller.newsletter::deleteAction
+        _sylius: 
+            section: admin

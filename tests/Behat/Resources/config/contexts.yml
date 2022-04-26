@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+    
+    app.behat.contexts.setup.newsletter:
+        class: App\Tests\Behat\Contexts\Setup\NewsletterContext
+
+    app.behat.contexts.ui.newsletter:
+        class: App\Tests\Behat\Contexts\Ui\NewsletterContext

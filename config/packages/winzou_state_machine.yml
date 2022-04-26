@@ -1,0 +1,8 @@
+winzou_state_machine:
+    sylius_shipment:
+        callbacks:
+            after:
+                app_assign_shipment_code:
+                    on: ['ship']
+                    do: ['@App\Assigner\ShipmentCodeAssigner','assign']
+                    args: ['object']

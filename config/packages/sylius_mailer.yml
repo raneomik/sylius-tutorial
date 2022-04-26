@@ -1,0 +1,5 @@
+sylius_mailer:
+    emails:
+        low_inventory:
+            subject: Low inventory notification
+            template: 'email/low_inventory_notification.html.twig'

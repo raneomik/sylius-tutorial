@@ -1,0 +1,9 @@
+{% extends '@SyliusShop/Email/layout.html.twig' %}
+
+{% block subject %}
+    Low inventory !
+{% endblock subject %}
+
+{% block content %}
+    Your {{ productVariant.product.name }} inventory is getting low ...
+{% endblock content %}

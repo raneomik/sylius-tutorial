@@ -1,0 +1,12 @@
+default:
+    suites:
+        managing_newsletter:
+            contexts: 
+                - sylius.behat.context.hook.doctrine_orm
+                - sylius.behat.context.setup.admin_security
+
+                - app.behat.contexts.setup.newsletter
+                
+                - app.behat.contexts.ui.newsletter
+            filters:
+                tags: "@managing_newsletter"

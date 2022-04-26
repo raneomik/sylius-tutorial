@@ -1,0 +1,30 @@
+suites:
+    app:
+        namespace: App
+        psr4_prefix: App
+        src_path: src/
+
+extensions:
+  FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+    # Specify a list of formats in which code coverage report should be
+    # generated.
+    # Default: [html]
+    format:
+      - text
+      - html
+      #- clover
+      #- php
+      #- xml
+      #- cobertura
+    #
+    # Specify output file/directory where code coverage report will be
+    # generated. You can configure different output file/directory per
+    # enabled format.
+    # Default: coverage
+    output:
+      html: coverage
+      #clover: coverage.xml
+      #php: coverage.php
+      #xml: coverage
+      #cobertura: cobertura.xml
+    #
