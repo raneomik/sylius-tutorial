@@ -11,7 +11,7 @@ ENV = dev
 RUNNER=symfony
 CONSOLE=$(RUNNER) console
 
-install: start composer assets-init assets syl-init
+install: start composer assets-init assets syl-init db-all
 
 start: serve up
 
@@ -59,14 +59,20 @@ db-mig:
 db-schema:
 	$(CONSOLE) d:s:c -n -e$(ENV)
 
-db-all: db-init db-schema
+db-fixtures:
+	$(CONSOLE) sylius:fixtures:load -n -e$(ENV)
+
+db-all: db-init db-mig db-fixtures
+
+test-ini:
+	@rm -rf etc/build/*
+	APP_ENV=test $(CONSOLE) d:d:d --force -n
+	APP_ENV=test $(CONSOLE) d:s:c -n
 
 phpspec:
 	XDEBUG_MODE=coverage $(RUNNER) php vendor/bin/phpspec run
 
-ENV=test
-behat: db-all
-	@rm -rf etc/build/*
+behat:
 	APP_ENV=test $(RUNNER) php vendor/bin/behat
 
 ecs:
