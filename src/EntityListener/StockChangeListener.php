@@ -6,7 +6,6 @@ namespace App\EntityListener;
 
 use App\Entity\Product\ProductVariant;
 use App\Sender\LowInventorySender;
-use Doctrine\Persistence\Event\LifecycleEventArgs;
 
 final class StockChangeListener
 {
@@ -15,7 +14,7 @@ final class StockChangeListener
     ) {
     }
 
-    public function postUpdate(ProductVariant $productVariant, LifecycleEventArgs $lifecycleEventArgs)
+    public function postUpdate(ProductVariant $productVariant): void
     {
         $stock = $productVariant->getOnHand() - $productVariant->getOnHold();
 

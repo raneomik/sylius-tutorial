@@ -22,6 +22,9 @@ class IconAttributeType implements AttributeTypeInterface
         return self::TYPE_ICON;
     }
 
+    /**
+     * @param array<string, string> $configuration
+     */
     public function validate(
         AttributeValueInterface $attributeValue,
         ExecutionContextInterface $context,

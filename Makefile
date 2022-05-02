@@ -77,3 +77,6 @@ behat:
 
 ecs:
 	$(RUNNER) php vendor/bin/ecs check src --fix
+
+phpstan:
+	$(RUNNER) php vendor/bin/phpstan analyse -c phpstan.neon -l max src/

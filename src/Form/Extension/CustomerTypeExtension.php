@@ -15,7 +15,10 @@ final class CustomerTypeExtension extends AbstractTypeExtension
         return [CustomerType::class];
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param array<string, string> $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('taxNumber', null, [
             'required' => false,
