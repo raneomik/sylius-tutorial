@@ -20,8 +20,6 @@ class LowInventorySender
 
     public function send(ProductVariant $productVariant): void
     {
-        $recipients = [];
-
         /** @var Channel[] $channels */
         $channels = $this->channelRepository->findAll();
 
@@ -30,21 +28,15 @@ class LowInventorySender
                 continue;
             }
 
-            $recipients[] = $contactEmail;
+            $this->sender->send(
+                Emails::LOW_INVENTORY,
+                [$contactEmail],
+                [
+                    'channel' => $channel,
+                    'localeCode' => $channel->getDefaultLocale()?->getCode(),
+                    'productVariant' => $productVariant,
+                ]
+            );
         }
-
-        if (empty($recipients)) {
-            return;
-        }
-
-        $this->sender->send(
-            Emails::LOW_INVENTORY,
-            $recipients,
-            [
-                'channel' => $channel,
-                'localeCode' => $channel->getDefaultLocale()->getCode(),
-                'productVariant' => $productVariant,
-            ]
-        );
     }
 }

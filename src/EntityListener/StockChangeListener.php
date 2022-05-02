@@ -15,7 +15,7 @@ final class StockChangeListener
     ) {
     }
 
-    public function postUpdate(ProductVariant $productVariant, LifecycleEventArgs $lifecycleEventArgs)
+    public function postUpdate(ProductVariant $productVariant): void
     {
         $stock = $productVariant->getOnHand() - $productVariant->getOnHold();
 

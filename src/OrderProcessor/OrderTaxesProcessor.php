@@ -21,7 +21,7 @@ final class OrderTaxesProcessor implements OrderProcessorInterface
      */
     public function process(OrderInterface $order): void
     {
-        /** @var Customer $customer */
+        /** @var ?Customer $customer */
         $customer = $order->getCustomer();
 
         if (null !== $customer?->getTaxNumber()) {
