@@ -1,24 +1,47 @@
 .DEFAULT_GLOBAL = help
 SHELL:=/bin/bash
 
-.PHONY: assets vendors test-init
+.PHONY: assets
 
 ENV = dev
 
-RUNNER=docker-compose exec -eAPP_ENV=$(ENV)
-CONSOLE=$(RUNNER) php bin/console
-#
-#RUNNER=symfony
-#CONSOLE=$(RUNNER) console
+#RUNNER=docker-compose exec -eAPP_ENV=$(ENV)
+#CONSOLE=$(RUNNER) php bin/console
+
+RUNNER=symfony
+CONSOLE=$(RUNNER) console
+
+install: start composer assets-init assets syl-init
+
+start: serve up
 
 serve: ## Starts symfony local server
 	@symfony server:stop
 	symfony serve -d --no-tls
 
-start:
-	docker-compose up -d --build
+up:
+	docker-compose up -d --build --remove-orphans
 
-syl-install:
+stop:
+	docker-compose stop
+	@symfony server:stop
+
+assets-init: yarn.lock
+	yarn
+	yarn cache clean
+
+assets: yarn.lock
+	$(CONSOLE) assets:install --no-interaction
+	$(CONSOLE) sylius:theme:assets:install public --no-interaction
+	yarn gulp
+
+watch: yarn.lock
+	yarn watch
+
+composer:
+	$(RUNNER) composer install --prefer-dist --no-progress --no-interaction
+
+syl-init:
 	$(CONSOLE) sylius:install
 
 cc:
@@ -39,11 +62,11 @@ db-schema:
 db-all: db-init db-schema
 
 phpspec:
-	XDEBUG_MODE=coverage vendor/bin/phpspec run
+	XDEBUG_MODE=coverage $(RUNNER) php vendor/bin/phpspec run
 
 behat:
 	@rm -rf etc/build/*
-	vendor/bin/behat
+	APP_ENV=test $(RUNNER) php vendor/bin/behat
 
 ecs:
 	$(RUNNER) php vendor/bin/ecs check src --fix

@@ -123,7 +123,7 @@ jobs:
                 name: Prepare test application database
                 run: |
                     APP_DEBUG=1 bin/console doctrine:database:create -vvv
-                    bin/console doctrine:migrations:migrate -n -vvv
+                    bin/console doctrine:schema:create -n -vvv
 
             -
                 name: Prepare test application assets
