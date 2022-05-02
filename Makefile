@@ -64,10 +64,10 @@ db-all: db-init db-schema
 phpspec:
 	XDEBUG_MODE=coverage $(RUNNER) php vendor/bin/phpspec run
 
-behat:
+ENV=test
+behat: db-all
 	@rm -rf etc/build/*
 	APP_ENV=test $(RUNNER) php vendor/bin/behat
 
 ecs:
 	$(RUNNER) php vendor/bin/ecs check src --fix
-	$(RUNNER) php vendor/bin/ecs check spec --fix

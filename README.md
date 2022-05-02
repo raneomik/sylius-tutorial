@@ -4,7 +4,7 @@
     </a>
 </p>
 
-<h1 align="center">Sylius Standard Edition</h1>
+<h1 align="center">Sylius Standard Edition (Starter - Symfony-cli hybrid integration version)</h1>
 
 <p align="center">This is Sylius Standard Edition repository for starting new projects.</p>
 
