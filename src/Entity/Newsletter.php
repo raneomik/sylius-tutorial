@@ -7,20 +7,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="app_newsletter")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'app_newsletter')]
 class Newsletter implements ResourceInterface
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
     protected ?int $id = null;
-
-    /** @ORM\Column */
+    #[ORM\Column]
     protected ?string $name = null;
 
     public function getId(): ?int

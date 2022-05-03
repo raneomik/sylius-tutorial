@@ -23,7 +23,7 @@ class IconAttributeType implements AttributeTypeInterface
     }
 
     /**
-     * @param array<string, string> $configuration
+     * @param array<array-key, mixed> $configuration
      */
     public function validate(
         AttributeValueInterface $attributeValue,

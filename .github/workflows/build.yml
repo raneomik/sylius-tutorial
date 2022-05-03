@@ -160,6 +160,10 @@ jobs:
                 name: Run PHPStan
                 run: vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 
+            -   
+                name: Run Psalm
+                run: vendor/bin/psalm
+
             -
                 name: Validate database schema
                 run: bin/console doctrine:schema:validate

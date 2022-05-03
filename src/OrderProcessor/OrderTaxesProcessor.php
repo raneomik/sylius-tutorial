@@ -5,23 +5,26 @@ declare(strict_types=1);
 namespace App\OrderProcessor;
 
 use App\Entity\Customer\Customer;
-use App\Entity\Order\Order;
+use Sylius\Component\Core\Model\Order;
 use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 
 final class OrderTaxesProcessor implements OrderProcessorInterface
 {
     public function __construct(
-        private OrderProcessorInterface $baseOrderProcessor
+        private readonly OrderProcessorInterface $baseOrderProcessor
     ) {
     }
 
     /**
-     * @param Order $order
+     * @psalm-ignore MoreSpecificImplementedParamType
+     * @phpstan-param Order $order
      */
-    public function process(OrderInterface $order): void
+    public function process(OrderInterface|Order $order): void
     {
-        /** @var ?Customer $customer */
+        /**
+         * @var ?Customer $customer
+         */
         $customer = $order->getCustomer();
 
         if (null !== $customer?->getTaxNumber()) {

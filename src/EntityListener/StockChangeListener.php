@@ -10,7 +10,7 @@ use App\Sender\LowInventorySender;
 final class StockChangeListener
 {
     public function __construct(
-        private LowInventorySender $lowInventorySender
+        private readonly LowInventorySender $lowInventorySender
     ) {
     }
 
